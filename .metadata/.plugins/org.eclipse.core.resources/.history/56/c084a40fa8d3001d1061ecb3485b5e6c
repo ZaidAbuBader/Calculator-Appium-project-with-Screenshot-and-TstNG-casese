@@ -1,0 +1,46 @@
+
+public class MyClass {
+
+	public static void main(String[] args) {
+
+		String MyName = "Zaid Abu Bader";
+
+		int MyAge = 42;
+
+		char Myfirstletter = 'N';
+
+		boolean iLovejava = true;
+
+		double MyHighest = 173.2595465121321645;
+
+		float Myhomearea = 125.756f;
+		System.out.println(MyName.toUpperCase());
+		System.out.println(MyName.toLowerCase());
+		System.out.println(Myfirstletter);
+		System.out.println(iLovejava);
+		System.out.println(MyHighest);
+		System.out.println(Myhomearea);
+
+		// STRING methods
+		System.out.println("the length of my name is  " + MyName.length());
+		System.out.println(MyName.indexOf("Bader"));
+		System.out.println(MyName.indexOf("bader") + " " + MyName.indexOf("Abu"));
+
+		//
+		System.out.println(MyName.codePointAt(10));
+		// "test" System.out.println(MyName.codePointAt(758));
+		// "test" System.out.println(MyName.codePointAt(-4));
+
+		String myStr = "Hello Jordan";
+		int result = myStr.codePointAt(3);
+		System.out.println(result);
+
+//
+		
+		System.out.println(MyName.charAt(3));
+		System.out.println(MyName.charAt(70));
+
+
+	}
+
+}

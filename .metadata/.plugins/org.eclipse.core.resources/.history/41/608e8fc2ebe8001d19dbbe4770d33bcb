@@ -1,0 +1,21 @@
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.testng.annotations.BeforeTest;
+
+public class ParametersClass {
+	
+
+	WebDriver driver = new ChromeDriver();
+
+	static String TheWebsite= "https://www.almosafer.com/en";
+
+		
+	}
+	
+	
+	
+	
+	
+
+

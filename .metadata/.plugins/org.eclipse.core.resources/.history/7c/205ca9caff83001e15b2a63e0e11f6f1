@@ -1,0 +1,116 @@
+package Appium_advanced;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+import java.awt.RenderingHints.Key;
+import java.io.File;
+import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
+import java.sql.Date;
+
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.AndroidMobileCapabilityType;
+import io.appium.java_client.remote.MobileCapabilityType;
+
+public class MyAppiumClass extends ParametersClass_Appium {
+	@BeforeMethod
+	public void MyBeforeMethods() throws MalformedURLException {
+		driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"), caps);
+
+	}
+
+	@BeforeTest
+	public void Mysetup() {
+		caps.setCapability(MobileCapabilityType.PLATFORM_NAME, "Andriod");
+		caps.setCapability(MobileCapabilityType.DEVICE_NAME, "ZaQa");
+
+		// This is only when we need to use mobile application
+		File CalculatorApp = new File("src/Applications/calculator.apk");
+		caps.setCapability(MobileCapabilityType.APP, CalculatorApp.getAbsolutePath());
+
+	}
+
+//	@Test()
+//	public void TestMultipleApp() throws MalformedURLException {
+//    driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),caps);
+//    driver.findElement(By.id("com.google.android.calculator:id/digit_9")).click();
+//    driver.findElement(By.id("com.google.android.calculator:id/op_mul")).click();
+//    driver.findElement(By.id("com.google.android.calculator:id/digit_8")).click();
+//    driver.findElement(By.id("com.google.android.calculator:id/op_mul")).click();
+//    driver.findElement(By.id("com.google.android.calculator:id/digit_7")).click();
+//    driver.findElement(By.id("com.google.android.calculator:id/eq")).click();
+//
+//	}
+	@Test()
+	public void TestAdditionProcess() throws IOException {
+		AdditionFunction("8", "6");
+		TakesScreenshot Src1=((TakesScreenshot)driver);
+		File ScrFile=Src1.getScreenshotAs(OutputType.FILE);
+		File dest =new File (".//Mypictures/1.png");
+		FileUtils.copyFile(ScrFile, dest);
+		
+
+	}
+
+	@Test()
+	public void TestSubTractionProcess() throws IOException {
+		SubtractionFunction("9", "4");
+		TakesScreenshot Src1=((TakesScreenshot)driver);
+		File ScrFile=Src1.getScreenshotAs(OutputType.FILE);
+		File dest =new File (".//Mypictures/2.png");
+		FileUtils.copyFile(ScrFile, dest);
+
+	}
+
+	@Test()   // enabled = false
+	public void SqurePower() throws IOException {
+		PowerFunction("2", "3");
+		TakesScreenshot Src1=((TakesScreenshot)driver);
+		File ScrFile=Src1.getScreenshotAs(OutputType.FILE);
+		File dest =new File (".//Mypictures/3.png");
+		FileUtils.copyFile(ScrFile, dest);
+		java.util.Date CurrentDate = new java.util.Date();
+		System.out.println(CurrentDate);
+		
+		
+		
+		
+	}
+
+//	@Test()public void TestSubtractionProcess() throws MalformedURLException {
+//	    driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),caps);
+//
+//		
+//	}
+
+	// This is only when we need to use mobile browser
+//		caps.setCapability("chromedriverExecutable", "D:\\ChromeWebDriverZ1\\chromedriver.exe");
+//		caps.setCapability(MobileCapabilityType.BROWSER_NAME, "chrome");
+//	}
+
+//	@Test()
+//	public void OpenBrowserAndUseGoogle() throws MalformedURLException {
+//		
+//		driver = new AndroidDriver(new URL("http://127.0.0.1:4723/wd/hub"),caps);
+//		driver.get("https://www.google.com");
+//		driver.findElement(By.id("XSqSsc")).sendKeys("Linkedin"+Keys.ENTER);
+//
+//	}
+
+	@AfterTest
+	public void PostTesting() {
+
+	}
+
+}

@@ -1,0 +1,31 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+public class Swaglab_advaced_Test1 {
+	WebDriver driver = new ChromeDriver();
+
+	@BeforeTest
+	public void MyBeforeTest() {
+		driver.get("https://www.saucedemo.com/");
+	}
+
+	@Test()
+	public void MyTestOne  ( ) {
+	driver.findElement(By.id("user-name")).sendKeys("standard_user");	
+	driver.findElement(By.name("password")).sendKeys("secret_sauce");
+	//driver.findElement(By.name("login-button")).click();
+	//driver.findElement(By.xpath("//*[@id=\"login-button\"]")
+	driver.findElement(By.cssSelector("'input [@data-test=\"login-button\"]'")).click();
+	//"input[@data-test="login-button"]"
+		
+	}
+
+	@AfterTest
+	public void MtAfterTest() {
+	}
+
+}

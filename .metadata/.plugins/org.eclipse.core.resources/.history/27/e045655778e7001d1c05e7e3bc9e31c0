@@ -1,0 +1,107 @@
+import java.util.List;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.Assert;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
+
+public class MyTestCases {
+
+	String TheWebSite = "https://www.saucedemo.com/";
+
+	WebDriver driver = new ChromeDriver();
+
+	@BeforeTest
+
+	public void MyBeforeTest() {
+		driver.get(TheWebSite);
+		driver.manage().window().maximize();
+		WebElement emailInput = driver.findElement(By.xpath("//*[@id=\"user-name\"]"));
+		emailInput.sendKeys("standard_user");
+		WebElement passField = driver.findElement(By.xpath("//*[@id=\"password\"]"));
+		passField.sendKeys("secret_sauce");
+		WebElement loginButton = driver.findElement(By.xpath("//*[@id=\"login-button\"]"));
+		loginButton.click();
+
+	}
+
+	@Test(priority = 1)
+	public void AddMyItems() throws InterruptedException {// throws InterruptedException from thread.sleep()
+		// declare list of WebElements ,and because all have the same class ,we put all
+		// at the same class
+		// Don't forget to add java UTI library for list .
+		// for typed as "for" not "For" capital F
+		// AddToCartButtons.size() --> to know the number of buttons .
+		//
+		List<WebElement> AddToCartButtons = driver.findElements(By.className("btn_small"));
+		for (int i = 0; i < AddToCartButtons.size(); i++) {
+			AddToCartButtons.get(i).click();
+			Thread.sleep(1000);// to add one second between each press
+		}
+
+		// the ExpectedItemCart show the number of buttons
+		int ExpectedItemCart = AddToCartButtons.size();
+		// the ActualItemCart is the number inside the cart ,which is now is 6,but we
+		// can't type 6 ,because its maybe differ laterly
+		WebElement ActualItemCart = driver.findElement(By.xpath("//*[@id=\"shopping_cart_container\"]/a/span"));
+		// now we must convert the number inside cart (((ActualItemCart)) to string by
+		// using
+		// the function ActualItemCart.gettext();
+		// we can't convert the WebElement to integer directly,we must convert it to
+		// string through gettext()
+		// then we convert it to integer through ((Integer.parsInt((string value)) .
+		String ActualValue = ActualItemCart.getText();
+		// now we convert the string to integer
+		int UpdatedValue = Integer.parseInt(ActualValue);
+		// here in Assertion is t certainty the fuction work correctly
+		Assertion Assert2 = new Assertion();
+		Assert2.assertEquals(UpdatedValue, ExpectedItemCart, "helooo,ana hon sawait added for all items");
+		
+		// Assertion MyAssert = new Assertion();
+		// MyAssert.assertEquals(UpdatedValue, ExpectedItemCart);
+	}
+
+	@Test(priority = 2)
+	public void RemoveAllItems() throws InterruptedException {
+		Thread.sleep(2000);// wait 2 second before remove the buttons
+		
+		List<WebElement> RemoveFromCart = driver.findElements(By.className("btn_small"));
+		int ExpectedItemsAfterRemoved=RemoveFromCart.size()-RemoveFromCart.size();
+		
+		for (int j = 0; j < RemoveFromCart.size(); j++) {
+			RemoveFromCart.get(j).click();
+
+			Thread.sleep(1000);// to add one second between each press }
+		}
+
+	}
+	
+	@Test
+	public void TestTitle() {
+		String ExpectrdTitle="Swag Labs";
+		String ActualTitle=driver.getTitle();
+		Assert.assertEquals(ActualTitle, ExpectrdTitle, "heloooooooooooooooooooo");
+		
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+
+	@AfterTest
+	public void AfterTest() {
+	}
+
+}

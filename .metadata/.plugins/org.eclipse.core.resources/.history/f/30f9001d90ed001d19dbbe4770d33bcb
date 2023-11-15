@@ -1,0 +1,252 @@
+import java.time.Duration;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
+
+public class MosaferClass extends ParametersClass {
+	// Assertion MyAssert=new Assertion(); you can add assertion here to be a global
+	// or you can put in parameters class that inherits every thing to here
+
+	@BeforeTest
+	public void myBeforeTest() {
+		driver.get(TheWebsite);
+		driver.manage().window().maximize();
+	}
+
+//////////////////////
+//	@Test(description = "test number 2")
+//	public void CheckTheLanguage() {
+//
+//		String ActualLanguage = driver.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[1]"))
+//				.getText();
+//		MyAssert.assertEquals(ActualLanguage, ExpectedLanguageArabic, "test the language is English is done");
+//	}
+
+//////////////////////////////////////////////////////////
+	@Test(description = "test number 3")
+	public void CheckTheCurrency() {
+
+		String ActualCurrency = driver
+				.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/div[1]/div/button")).getText();
+		MyAssert.assertEquals(ActualCurrency, ExpectedCurrency);
+	}
+
+////////////////////////////////////////////////////////////
+	@Test(description = "test number 3")
+	public void CheckThenumber() {
+
+		String TheActualNumber = driver
+				.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[2]/strong")).getText();
+		MyAssert.assertEquals(TheActualNumber, ExpectedNumber);
+		System.out.println(TheActualNumber + "@@@@@@@@@@@");
+		System.out.println(TheActualNumber + "????????????");
+
+//	int TheActualNumber2=Integer.parseInt(TheActualNumber);this is not worked 
+//	int ExpectedNumber2=Integer.parseInt(ExpectedNumber);
+//	//MyAssert.assertEquals(TheActualNumber2, ExpectedNumber2);
+	}
+
+/////////////////////////////////////////////////////////
+	@Test(description = "test number 4")
+	public void CheckQitafLogo() {
+		WebElement MyFooter = driver.findElement(By.tagName("footer"));
+		List<WebElement> TheNumberOfSVGinFooter = MyFooter.findElements(By.tagName("svg"));
+		System.out.println(TheNumberOfSVGinFooter.size() + "   @@@@@@@@");
+
+		for (int i = 0; i < TheNumberOfSVGinFooter.size(); i++) {
+			String TheDtaTestId = TheNumberOfSVGinFooter.get(i).getAttribute("data-testid");
+			System.out.println(TheDtaTestId);
+
+			if (TheDtaTestId == null) {
+				continue;
+			} else if (TheDtaTestId.equals("Footer__QitafLogo"))
+				// else if (TheDtaTestId.contains("Footer__QitafLogo") ) //you can use contains
+				// function
+
+				ActualvalueOfQitafIfIsThere = true;
+		}
+		MyAssert.assertEquals(ActualvalueOfQitafIfIsThere, true);
+		// System.out.println("hello zaid i ama here");}
+	}
+//////////////////////////////////////////////////
+
+//	@Test()
+//	public void AnotherCheckQitafLogoAnother() {
+//		WebElement MyFooter222222 = driver.findElement(By.xpath("//*[@id=\"__next\"]/footer"));
+//		List<WebElement> TheNumberOfSVGinFooter222 = MyFooter222222.findElements(By.tagName("svg"));
+//
+//		System.out.println(TheNumberOfSVGinFooter222.size() + "   $$$$$$$$");
+//
+//		for (int i = 0; i < TheNumberOfSVGinFooter222.size(); i++) {
+//			String TheDtaTestId = TheNumberOfSVGinFooter222.get(i).getAttribute("data-testid");
+//			System.out.println(TheDtaTestId);
+//		}
+//	}
+//
+//	@Test()
+//	public void CheckthenumberofsvginHeader() {
+//		// To find the number of svg images in the Header
+//		WebElement MyHeader = driver.findElement(By.xpath("//*[@id=\"__next\"]/header"));
+//		List<WebElement> ThenumberOfSVGinHeader = MyHeader.findElements(By.tagName("svg"));
+//		System.out.println(ThenumberOfSVGinHeader.size() + "  KKKKKKKKK");
+//
+//	}
+////////////////////////////////////////////////////////
+
+//	@Test(description = "test number 5")
+//	public void Hotel_Tab_is_not_Selected() {
+//
+//		String Expected_Value_Of_Pressing = "false";
+//
+//		WebElement Hotel_tab = driver.findElement(By.xpath("//*[@id=\"uncontrolled-tab-example-tab-hotels\"]"));
+//
+//		String Actual_Value_Of_Pressing = Hotel_tab.getAttribute("aria-selected");
+//
+//		System.out.println(Actual_Value_Of_Pressing + "#########");
+//
+//		MyAssert.assertEquals(Actual_Value_Of_Pressing, Expected_Value_Of_Pressing);
+//
+//	}
+
+	//////////////////////////////////////////////////////////////////////////
+//	@Test(description = "test number 6")
+//	public void FlightTabIsPressing() {
+//
+//		WebElement FlightTab = driver.findElement(By.xpath("//*[@id=\"uncontrolled-tab-example-tab-flights\"]"));
+//		String ActualFlightTabIsPressed = FlightTab.getAttribute("aria-selected");
+//		String ExpectedFlightTabPressed = "true";
+//		System.out.println(ActualFlightTabIsPressed + "@@@@@@@@@@@@");
+//		MyAssert.assertEquals(ActualFlightTabIsPressed, ExpectedFlightTabPressed);
+//	}
+//	//////////////////////////////////
+
+//	@SuppressWarnings("deprecation")
+//	@Test(description = "test number =7")
+	//public void CheckFlightDate() {
+		// LocalDate ExpectedDate=LocalDate.now().plusDays(1);its not suitable because
+		// its come the month as number
+		// and in the website .the monthe typed as May not 5
+//			Calendar todaydateeman=Calendar.getInstance(); this is correct
+//			System.out.println(todaydateeman.getTime()+"!!!!!!!!!!!!!!!");
+
+//		Date TodayTime = new Date();
+//		System.out.println(TodayTime + "     &&&&&&&&&&");
+//		System.out.println(TodayTime.getDay() + "    @@@@@@@");
+//		int NumberOfDaysExtra = 1;
+//		int ActualdayofMounth = TodayTime.getDay();
+//
+//		String TheDayOnTheWebsite = driver.findElement(By.xpath(
+//				"//*[@id=\"uncontrolled-tab-example-tabpane-flights\"]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/span[2]"))
+//				.getText();
+//		int TheDayOnTheWebsiteAsInteger = Integer.parseInt(TheDayOnTheWebsite);
+//		MyAssert.assertEquals(TheDayOnTheWebsiteAsInteger, ActualdayofMounth + NumberOfDaysExtra);
+//
+//	}
+
+//	@SuppressWarnings("deprecation test number 8")
+//	@Test()
+//	public void CheckReturntDate() {
+//		// LocalDate ExpectedDate=LocalDate.now().plusDays(1);its not suitable because
+//		// its come the month as number
+//		// and in the website .the monthe typed as May not 5
+////			Calendar todaydateeman=Calendar.getInstance(); this is correct
+////			System.out.println(todaydateeman.getTime()+"!!!!!!!!!!!!!!!");
+//
+//		Date TodayTime = new Date();
+//		System.out.println(TodayTime + "     &&&&&&&&&&");
+//		System.out.println(TodayTime.getDay() + "    @@@@@@@");
+//
+//		int NumberOfDaysExtra = 2;
+//		int ActualdayofMounth = TodayTime.getDay();
+//
+//		String TheDayOnTheWebsite = driver.findElement(By.xpath(
+//				"//*[@id=\"uncontrolled-tab-example-tabpane-flights\"]/div/div[2]/div[1]/div/div[3]/div/div/div/div[2]/span[2]"))
+//				.getText();
+//		int TheDayOnTheWebsiteAsInteger = Integer.parseInt(TheDayOnTheWebsite);
+//		MyAssert.assertEquals(TheDayOnTheWebsiteAsInteger, ActualdayofMounth + NumberOfDaysExtra);
+//
+//	}
+
+	@Test(description = "test number 9", invocationCount = 1)
+	public void RandomCheckTheWebsiteLanguage() {
+
+		String MyUrls[] = { "https://www.almosafer.com/en", "https://www.almosafer.com/ar" };
+		int MyLandindex = rand.nextInt(0, 2);
+		driver.get(MyUrls[MyLandindex]);
+		if (driver.getCurrentUrl().contains("ar")) {
+			String Lang = driver.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[1]"))
+					.getText();
+			MyAssert.assertEquals(Lang, ExpectedLanguageEnglish);
+		} else {
+			String Lang = driver.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[1]"))// also
+
+					.getText();
+			MyAssert.assertEquals(Lang, ExpectedLanguageArabic);
+		}
+
+	}
+
+	@Test(description = "test number 10")
+	public void CheckTheHotel() throws InterruptedException {
+		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+		
+		
+		String MyArabicCountries[] = { "جدة", "دبي" };
+		int MyArabicIndex = rand.nextInt(0, 2);
+		
+		String MyEnglishCountries[] = { "dubai", "jeddah", "riyadh" };
+		int MyEngishIndex = rand.nextInt(0, 3);
+		
+		
+		String MyUrls[] = { "https://www.almosafer.com/en", "https://www.almosafer.com/ar" };
+		int MyLandindex = rand.nextInt(0, 2);
+		driver.get(MyUrls[MyLandindex]);
+
+		if (driver.getCurrentUrl().contains("ar")) {
+			WebElement Hotel_tab = driver.findElement(By.xpath("//*[@id=\"uncontrolled-tab-example-tab-hotels\"]"));
+			Hotel_tab.click();// to press on  hotel tab
+			//Thread.sleep(1500);
+
+			WebElement SearchField = driver.findElement(By.xpath(
+					"//*[@id=\"uncontrolled-tab-example-tabpane-hotels\"]/div/div/div/div[1]/div/div/div/div/input"));
+			WebElement searchbutton =driver.findElement(By.xpath("//*[@id=\"uncontrolled-tab-example-tabpane-hotels\"]/div/div[2]/div/div[4]/button"));
+
+			SearchField.sendKeys(MyArabicCountries[MyArabicIndex]);
+			SearchField.sendKeys(Keys.ARROW_DOWN );
+			searchbutton.click();
+
+			//SearchField.sendKeys(Keys.ENTER); enter button dosnt work in the website,for that we use search button 
+			//another example of array with daghter names and how you can call them
+			//String daugternames[]= {"naya","tuleen","yara" };
+//			int daghterindex=rand.nextInt(0, 3);
+//			SearchField.sendKeys(daugternames[daghterindex]);
+//			// SearchField.sendKeys("zaid");
+			//Thread.sleep(1500);
+
+		} else {
+			WebElement Hotel_tab = driver.findElement(By.xpath("//*[@id=\"uncontrolled-tab-example-tab-hotels\"]"));
+			Hotel_tab.click();
+			Thread.sleep(1500);
+
+			WebElement SearchField = driver.findElement(By.xpath(
+					"//*[@id=\"uncontrolled-tab-example-tabpane-hotels\"]/div/div/div/div[1]/div/div/div/div/input"));
+			WebElement searchbutton =driver.findElement(By.xpath("//*[@id=\"uncontrolled-tab-example-tabpane-hotels\"]/div/div[2]/div/div[4]/button"));
+			SearchField.sendKeys(MyEnglishCountries[MyEngishIndex]);
+			SearchField.sendKeys(Keys.ARROW_DOWN );
+			searchbutton.click();
+			
+
+			// SearchField.sendKeys("Nayazaid@@@@@@@"); 
+		}
+
+	}
+
+}

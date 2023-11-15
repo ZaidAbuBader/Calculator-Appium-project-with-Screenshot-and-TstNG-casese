@@ -1,0 +1,27 @@
+
+public class MyClass {
+
+	public static void main(String[] args) {
+
+		String MyName = "ZaidAbuBader";
+
+		int MyAge = 42;
+
+		char Myfirstletter = 'N';
+
+		boolean iLovejava = true;
+
+		double MyHighest = 173.2595465121321645;
+
+		float Myhomearea = 125.756f;
+
+		System.out.println(MyName.toUpperCase());
+		System.out.println(MyName.toLowerCase());
+		System.out.println(Myfirstletter);
+		System.out.println(iLovejava);
+		System.out.println(MyHighest);
+		System.out.println(Myhomearea);
+
+	}
+
+}

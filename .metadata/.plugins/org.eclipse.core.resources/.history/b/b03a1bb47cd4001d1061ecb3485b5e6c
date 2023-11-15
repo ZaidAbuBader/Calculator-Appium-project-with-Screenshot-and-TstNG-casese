@@ -1,0 +1,48 @@
+
+public class MyClass2 {
+
+	public static void main(String[] args) {
+
+		String[] cars = { "Volvo", "BMW", "Ford", "Mazda" };
+		for (int i = 0; i < 2; i++);
+		{
+			for (int n = 0; n < cars.length; n++) {
+				System.out.println(cars[n]);}
+				
+			                                      
+		}
+		
+		System.out.println();
+		
+		for (String i : cars) {
+			  System.out.println(i);}
+	                                        
+		System.out.println();
+
+		
+		System.out.println("      multideminsional arrays");
+
+		
+		   int[][] myNumbers = { {1, 2, 3, 4}, {5, 6, 7,15},{14,17,22,75,98,35 } };
+		    System.out.println(myNumbers[0][3]); 
+		    System.out.println(myNumbers[1][2]);
+		    System.out.println(myNumbers[2][4]);
+		    System.out.println(myNumbers[2][0]);
+		    System.out.println(myNumbers[2][3]);
+			
+		    System.out.println();
+
+		    myNumbers[1][2] = 9;
+		    myNumbers[2][3] = 102;
+
+		    System.out.println(myNumbers[1][2]);//its type 9 instead 7
+		    System.out.println(myNumbers[2][3]);//its type 102 instead 75
+		    
+		    
+		    for (int i = 0; i < myNumbers.length; ++i) {
+		        for(int j = 0; j < myNumbers[i].length; ++j) {
+		          System.out.println(myNumbers[i][j]);
+
+                      }
+	}
+	}}

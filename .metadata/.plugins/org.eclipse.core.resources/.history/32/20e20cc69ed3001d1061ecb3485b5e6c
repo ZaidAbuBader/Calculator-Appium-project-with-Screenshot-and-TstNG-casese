@@ -1,0 +1,31 @@
+
+public class MyClass {
+
+	public static void main(String[] args) {
+		
+		String MyName="Zaid" ;
+		
+		int MyAge=42;
+		
+		char Myfirstletter ='N';
+		
+		boolean iLovejava = true ;
+		
+		double MyHighest=173.25;
+		
+		System.out.println(MyName);
+		System.out.println(Myfirstletter);
+		System.out.println(iLovejava);
+		System.out.println(MyHighest);
+				
+		
+				
+				
+		
+		
+		
+		
+		
+	}
+
+}

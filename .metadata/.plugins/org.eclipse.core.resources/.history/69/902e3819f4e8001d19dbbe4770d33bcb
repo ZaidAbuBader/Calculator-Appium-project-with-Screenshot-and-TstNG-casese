@@ -1,0 +1,48 @@
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
+
+public class MosaferClass extends ParametersClass {
+	//Assertion MyAssert=new Assertion(); you can add assertion here to be a global
+	//or you can put in parameters class that inherits every thing to here
+
+
+	@BeforeTest
+	public void myBeforeTest() {
+		driver.get(TheWebsite);
+		driver.manage().window().maximize();
+		
+
+	}
+
+	@Test()
+	public void CheckTheLanguage() {
+		
+     String ActualLanguage=driver.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[1]")).getText();
+    MyAssert.assertEquals(ActualLanguage, ExpectedLanguage,"test the language is English is done");
+
+	}
+
+	@Test()
+	public void CheckTheCurrency () {
+		
+		String ActualCurrency= driver.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/div[1]/div/button")).getText();
+		MyAssert.assertEquals(ActualCurrency,ExpectedCurrency);
+		
+	}
+	@Test()
+	public void CheckThenumber ()
+	{
+	
+	String TheActualNumber=driver.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[2]/strong")).getText();
+	int TheActualNumber2=Integer.parseInt(TheActualNumber);
+	int ExpectedNumber2=Integer.parseInt(ExpectedNumber);
+	MyAssert.assertEquals(TheActualNumber, ExpectedNumber);
+	
+	
+	}
+	
+	
+}

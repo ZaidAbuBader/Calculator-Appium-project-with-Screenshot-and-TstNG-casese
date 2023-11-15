@@ -1,0 +1,253 @@
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+import org.testng.asserts.Assertion;
+
+public class AlMosafer_2_Class extends Parameters222 {
+	@BeforeTest
+	public void MyBeforeTest() {
+		driver.get(TheWebsite);
+		driver.manage().window().maximize();
+
+	}
+
+	@Test(description = "Test Number 1")
+	public void Check_Default_Language_Is_English() {
+		String ActualLanguage = driver.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[1]"))
+				.getText();
+		MyAssert.assertEquals(ActualLanguage, Expected_Arabic_lang);
+	}
+	// String ExpectedButtonLang = ActualLanguage.getText();// we can declare
+	// webelement then convert it to string by using gettext();
+
+	@Test(description = "Test Number 2") // @@@@@@@@@@ Another way by using current URL @@@@@@@@@@@@@
+	public void Check22_Default_Language_Is_English22() {
+		String EnglishUrl = "https://www.almosafer.com/en";
+		String currentURL = driver.getCurrentUrl();
+		MyAssert.assertEquals(currentURL, EnglishUrl);
+	}
+
+	@Test(description = "Test Number 3")
+	public void Check_The_Currency() {
+		String AtualCurrency = driver
+				.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/div[1]/div/button")).getText();
+		MyAssert.assertEquals(AtualCurrency, ExpectedCurrency);
+	}
+
+	@Test(description = "Test Number 4")
+	public void Check_The_Title() {
+		String ActualTitle = driver.getTitle();
+		System.out.println(ActualTitle);
+		MyAssert.assertEquals(ActualTitle, ExpectedTitle);
+
+	}
+
+	@Test(description = "Test Number 5")
+	public void Check_The_Number() {
+		String ActualContact = driver
+				.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[2]/strong")).getText();
+		System.out.println(ActualContact);
+		MyAssert.assertEquals(ActualContact, ExpectedContact);
+
+	}
+
+	@Test(description = "Test Number 6")
+	public void Check_Qitaf_Logo() {
+		WebElement Footer = driver.findElement(By.xpath("//*[@id=\"__next\"]/footer/div[3]"));
+		List<WebElement> SvgTagInFooter = Footer.findElements(By.tagName("svg"));
+		System.out.println(SvgTagInFooter.size());
+
+		for (int i = 0; i < SvgTagInFooter.size(); i++) {
+			String Checkattribute = SvgTagInFooter.get(i).getAttribute("data-testid");
+			System.out.println(Checkattribute);
+
+			if ((Checkattribute != null) && Checkattribute.contains("Qitaf")) {
+				System.out.println("@@@@@@@@@@   Hello zaid");
+				MyAssert.assertEquals(Checkattribute, "Footer__QitafLogo");
+			}
+		}
+	}
+
+	@Test(description = "Test Number 7")
+	public void HotelIsNotChecked() {
+		WebElement HotelButton = driver.findElement(By.xpath("//*[@id=\"uncontrolled-tab-example-tab-hotels\"]"));
+		String ExpectedValueOfHotelButton = "false";
+		String Actualvalueofbutton = HotelButton.getAttribute("aria-selected");
+		System.out.println(Actualvalueofbutton);
+		MyAssert.assertEquals(Actualvalueofbutton, ExpectedValueOfHotelButton);
+
+	}
+
+	@Test(description = "Test Number 8")
+	public void FlightIstChecked() {
+		WebElement FlightButton = driver.findElement(By.xpath("//*[@id=\"uncontrolled-tab-example-tab-flights\"]"));
+		String Actualvalueofbutton = FlightButton.getAttribute("aria-selected");
+		boolean boleanValue = Boolean.parseBoolean(Actualvalueofbutton);// convert string to boolean
+		System.out.println(boleanValue + "&&&&&&&&&&&");
+
+		if (boleanValue == true) {
+			MyAssert.assertEquals(boleanValue, true);
+			System.out.println(Actualvalueofbutton);
+		}
+
+	}
+
+	@Test()
+	public void FlightDepartureDate() {
+		String DepartureDate = driver.findElement(By.xpath(
+				"//*[@id=\"uncontrolled-tab-example-tabpane-flights\"]/div/div[2]/div[1]/div/div[3]/div/div/div/div[1]/span[2]"))
+				.getText();
+		int ActualDateToInteger = Integer.parseInt(DepartureDate);
+		System.out.println(DepartureDate + "     JJJJJJJJJJJ");
+
+		Date TodayDte = new Date();
+		System.out.println(TodayDte);
+		System.out.println(TodayDte.getDate() + " NNNNNNNNNNNN");
+		int Extradays = 1;
+		int Expectedtodaydate = TodayDte.getDate() + Extradays;
+		MyAssert.assertEquals(ActualDateToInteger, Expectedtodaydate);
+
+		// int Expectedtodaytostring=TodayDte.getDate()+2; to check the assertion if its
+		// correct
+
+		///// ANOTHER IDEAS OF DATE
+		LocalDate ExpectedDateinLOCALDATEFUNCTION = LocalDate.now().plusDays(3);
+		System.out.println("The local date is    " + ExpectedDateinLOCALDATEFUNCTION);
+
+		// its not suitable because
+		// its come the month as number
+		// While in the website .the monthe typed as "May" not as number "5"
+
+		///// ANOTHER IDEAS OF DATE
+		Calendar todaydateeman = Calendar.getInstance(); // this is ALSO correct
+		System.out.println("The date in getInstance is    " + todaydateeman.getTime());
+
+	}
+
+	@Test()
+	public void FlightReturnDate() {
+		String ActualReturnDate = driver.findElement(By.xpath(
+				"//*[@id=\"uncontrolled-tab-example-tabpane-flights\"]/div/div[2]/div[1]/div/div[3]/div/div/div/div[2]/span[2]"))
+				.getText();
+		int ActualReturnDateToInteger = Integer.parseInt(ActualReturnDate);
+		System.out.println(ActualReturnDate);
+		Date Todaydate22 = new Date();
+		int ExpectedTodayDAte22 = Todaydate22.getDate();
+
+		int Extradaysforreturn = 2;
+		MyAssert.assertEquals(ActualReturnDateToInteger, ExpectedTodayDAte22 + Extradaysforreturn);
+
+//		Calendar todaydate2=Calendar.getInstance();		
+//		int ExpectedReturnDate=Calendar.getInstance()+Extradaysforreturn;
+
+	}
+
+	@Test(invocationCount = 1)
+	public void RandomChangeLanguage() {
+		String[] websitelanguage = { "https://www.almosafer.com/en", "https://www.almosafer.com/ar" };
+		Random rand = new Random();
+		int randomvalues = rand.nextInt(0, 2);
+		driver.get(websitelanguage[randomvalues]);
+		String ExpecteEnglishdLanguage2 = "English";
+		String ExpectedArabicLanguage2 = "العربية";
+
+//		// if (driver.getCurrentUrl().contains("en"))
+		if (websitelanguage[randomvalues].contains("en")) {
+			String AcualEnglishlanguageofwebsite = driver
+					.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[1]")).getText();
+
+			MyAssert.assertEquals(AcualEnglishlanguageofwebsite, ExpectedArabicLanguage2);
+		} else {
+			String ActualArabiclanguageofwebsite = driver
+					.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[1]")).getText();
+			MyAssert.assertEquals(ActualArabiclanguageofwebsite, ExpecteEnglishdLanguage2);
+
+		}
+
+	}
+
+	@Test(invocationCount = 5)
+	public void RandomChangeLanguage22() {
+		String[] websitelanguage = { "https://www.almosafer.com/en", "https://www.almosafer.com/ar" };
+		Random rand = new Random();
+		int randomvalues = rand.nextInt(2);
+		driver.get(websitelanguage[randomvalues]);
+
+		String ExpecteEnglishdLanguage2 = "English";
+		String ExpectedArabicLanguage2 = "العربية";
+
+		if (randomvalues == 0) {
+			String ActualArabicValue = driver
+					.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[1]")).getText();
+
+			MyAssert.assertEquals(ActualArabicValue, ExpectedArabicLanguage2);
+		} else {
+			String ActualEnglishValue = driver
+					.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[1]")).getText();
+
+			MyAssert.assertEquals(ActualEnglishValue, ExpecteEnglishdLanguage2);
+		}
+	}
+@Test()
+public void AdddirectionCities () {
+	String[] websitelanguage = { "https://www.almosafer.com/en", "https://www.almosafer.com/ar" };
+
+	String []ArabicCities= {"جدة","دبي"};
+	String []EnglishCities= {"Dubai","Jeddah","Riyadh"};
+	Random rand =new Random();
+	int RandArabiccities=rand.nextInt(0, 2);
+	int RandEnglishcities=rand.nextInt(0, 3);
+ 
+	if (driver.getCurrentUrl().contains("en")) {
+		WebElement inputdata=driver.findElement(By.xpath("//*[@id=\"uncontrolled-tab-example-tabpane-flights\"]/div/div[2]/div[1]/div/div[2]/div[1]/div/div/div/input"));
+		driver.get(ArabicCities[RandArabiccities]);}
+
+				
+//
+//		MyAssert.assertEquals(AcualEnglishlanguageofwebsite, ExpectedArabicLanguage2);
+//	} else {
+//		String ActualArabiclanguageofwebsite = driver
+//				.findElement(By.xpath("//*[@id=\"__next\"]/header/div/div[1]/div[2]/div/a[1]")).getText();
+//		MyAssert.assertEquals(ActualArabiclanguageofwebsite, ExpecteEnglishdLanguage2);
+//
+//	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+}
